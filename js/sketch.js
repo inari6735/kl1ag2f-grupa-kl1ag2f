@@ -1,12 +1,14 @@
+//szerokość i wysokość canvas'u
 const canvasHeight = 500;
 const canvasWidth = 1000;
-
+//współrzędne piłki
 var ballX = canvasWidth / 2;
 var ballY = canvasHeight / 2;
-
+//wielkość piłki
 var ballSize = 30;
 
 var strokeColor = 'black';
+//kolor piłki
 var ballColor = 'white';
 //współrzędne paletki gracza pierwszego
 var paddlePX = 50;
@@ -14,11 +16,11 @@ var paddlePY = 180;
 //współrzędne paletki gracza drugiego
 var paddlePTX = 930;
 var paddlePTY = 180;
-//wysokosc paletki
+//wysokość paletki
 paddleHeight = 140;
-//szerokosc paletki
+//szerokość paletki
 paddleWidth = 20;
-//szybkosc piłki
+//szybkość piłki
 ballSpeedX = -4;
 ballSpeedY = -4;
 //wielkość linii środkowych
@@ -26,8 +28,9 @@ const lineWidth = 6;
 const lineHeight = 20;
 //prędkoś poruszania się paletek
 var paddleSpeed = 10;
-
+//wynik gracza po lewej stronie
 var leftscore = 0;
+//wynik gracza po prawej stronie
 var rightscore = 0;
 
 function setup(){
@@ -37,15 +40,36 @@ function setup(){
 function draw(){
   background('gray');
   lines();
-  ball();
   paddleOne();
   paddleTwo();
   move();
   score();
+  ball();
   gameOne();
   gameTwo();
+  sp();
 };
+//pauza
+pause = false;
 
+function sp(){
+  if(pause == true){
+
+  }else{
+
+  }
+}
+function keyPressed(){
+  if(keyCode === 32){
+    if(pause == false){
+      pause = true;
+    }else{
+      pause = false;
+    }
+  }
+}
+
+//funkcja rysująca piłkę i zdarzenia z nią związane
 function ball(){
   ellipse(ballX, ballY, ballSize, ballSize);
   fill(ballColor);
@@ -92,7 +116,7 @@ function ball(){
     speedUp();
   }
 };
-
+//paletka po lewej stronie
 function paddleOne(){
   rect(paddlePX, paddlePY, paddleWidth, paddleHeight, 20);
   if(paddlePY >= canvasHeight - paddleHeight){
@@ -102,6 +126,7 @@ function paddleOne(){
     paddlePY = 0
   }
 };
+//paletka po prawej stronie
 function paddleTwo(){
   rect(paddlePTX, paddlePTY, paddleWidth, paddleHeight, 20);
   if(paddlePTY >= canvasHeight - paddleHeight){
@@ -111,7 +136,7 @@ function paddleTwo(){
     paddlePTY = 0
   }
 };
-
+//rysowanie linii na środku stołu
 function lines(){
   for (
     var linePosition = 20;
@@ -121,7 +146,7 @@ function lines(){
     rect(canvasWidth / 2 - lineWidth / 2, linePosition, lineWidth, lineHeight);
   }
 };
-
+//ruch paletek
 function move(){
   if(keyIsDown(38)){
     paddlePTY = paddlePTY - paddleSpeed;
@@ -136,7 +161,7 @@ function move(){
     paddlePY = paddlePY + paddleSpeed;
   }
 };
-
+//funkcja przyspieszania piłki po odbiciu
 function speedUp() {
   //prędkość X
   if (ballSpeedX > 0 && ballSpeedX < 16) {
@@ -151,6 +176,7 @@ function speedUp() {
     ballSpeedY -= .8;
   }
 };
+//wynik graczy
 function score(){
   fill(255);
   textSize(80);
@@ -158,7 +184,7 @@ function score(){
   text(leftscore, canvasWidth / 2 - 90, 100);
   text(rightscore, canvasWidth / 2 + 45, 100);
 };
-
+//funkcje wywoływane po zakończeniu gry
 function gameOne(){
   if(leftscore >= 10){
     righscore = 0;
