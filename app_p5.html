@@ -7,10 +7,17 @@
     <link rel="Shortcut icon" href="favicon.ico" />
   </head>
   <body>
-    <a id="a1">☜</a>
+    <audio src="music/ding.mp3" controls id="sound"></audio>
+    <audio src="music/yay.mp3" id="sound2"></audio>
+    <a id="a1" onclick="document.getElementById('options').style.display='inline';
+
+    ">☜</a>
     <div id="options">
-      <p>Prędkość paletek</p><button>+</button><button>-</button><br>
+      <p>Prędkość paletek</p><button id="speed1">+</button><button id="speed2">-</button><br>
       <p>Prędkość piłki</p><button>+</button><button>-</button><br>
+      <p>Kolor paletki[L]</p><button>Zmień</button><br>
+      <p>Kolor paletki [P]</p><button>Zmień</button><br>
+      <p>Wygrana [aktualnie 10pkt]</p><button>+1</button><button>-1</button><br>
     </div>
     <script src="js/sketch.js"></script>
     <script src="js/p5.min.js"></script>

@@ -47,12 +47,12 @@ function draw(){
   ball();
   gameOne();
   gameTwo();
-  sp();
+  pauseGame();
 };
 //pauza
 pause = false;
 
-function sp(){
+function pauseGame(){
   if(pause == true){
 
   }else{
@@ -62,7 +62,7 @@ function sp(){
 function keyPressed(){
   if(keyCode === 32){
     if(pause == false){
-      pause = true;
+
     }else{
       pause = false;
     }
@@ -91,6 +91,7 @@ function ball(){
     ballY = canvasHeight / 2;
 
     rightscore++;
+    playAudio();
 
     plusOrMinus = Math.random() < 0.5 ? -1 : 1;
     ballSpeedX = plusOrMinus * 4;
@@ -101,6 +102,7 @@ function ball(){
     ballY = canvasHeight / 2;
 
     leftscore++;
+    playAudio();
 
     plusOrMinus = Math.random() < 0.5 ? -1 : 1;
     ballSpeedX = plusOrMinus * 4;
@@ -197,6 +199,7 @@ function gameOne(){
     text('Koniec gry', canvasWidth / 2 - 180, canvasHeight / 2);
     textSize(30);
     text('Aby wznowić grę należy kliknąć klawisz [F5]', canvasWidth / 2 - 285, canvasHeight / 2 + 100);
+    endAudio();
   }
 };
 function gameTwo(){
@@ -211,5 +214,25 @@ function gameTwo(){
     text('Koniec gry', canvasWidth / 2 - 180, canvasHeight / 2);
     textSize(30);
     text('Aby wznowić grę należy kliknąć klawisz [F5]', canvasWidth / 2 - 285, canvasHeight / 2 + 100);
+    endAudio();
   }
 };
+
+var snd = document.getElementById('sound');
+var snd2 = document.getElementById('sound2');
+
+function playAudio(){
+  snd.play();
+};
+
+function endAudio(){
+  snd2.play();
+};
+
+function change(){
+  paddleSpeed += 1;
+}
+
+var speed1 = document.getElementById('speed1');
+
+speed1.onclick = change();

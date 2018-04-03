@@ -16,14 +16,9 @@
         <h1 id="btn1">Pong Game</h1>
         <h2 id="btn2">Settings</h2>
         <h2 id="btn3">Music</h2>
+        <a id="back">Back</a>
         <audio src="music/sandstorm.mp3" controls autoplay id="sound2"></audio>
         <div id="settings">
-          <a>Game Difficulties:</a>
-            <a id="a1" href="">Easy</a>
-            <a id="a2" href="">Normal</a>
-            <a id="a3" href="">Hard</a>
-            <a id="a4" href="">Player vs Ai</a>
-            <br>
           <a id="" id="bcolor">Ball size</a>
           <button id="btnsize1">+</button>
           <button id="btnsize2">-</button><br>
@@ -114,9 +109,9 @@ function ball() {
   //piłka
   ctx.beginPath();
   ctx.arc(ballX,ballY,ballR,0*Math.PI,2*Math.PI);
-  ctx.strokeStyle = 'white';
+  ctx.strokeStyle = c;
   ctx.stroke();
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = c;
   ctx.fill();
   ballX += ballSpeedX;
   ballY += ballSpeedY;
@@ -212,11 +207,11 @@ function playerPosition(e) {
   playerY = e.clientY - topCanvas - paddleHeight / 2;
 
   //zabezpieczenie przed wyjechaniem paletki poza canvas
-  if (playerY >= ch - paddleHeight) {
-    playerY = ch - paddleHeight;
+  if (playerPY >= canvasHeight - paddleHeight) {
+    playerPY = canvasHeight - paddleHeight;
   }
-  if (playerY <= 0) {
-    playerY = 0;
+  if (playerPY <= 0) {
+    playerPY = 0;
   }
 }
 
@@ -301,7 +296,16 @@ $('#btn1').click(function(){
   $('#btn1').hide(function(){
     $('#btn2').show("slow");
     $('#btn3').show("slow");
+    $('#back').show("slow");
   });
+});
+$('#back').click(function(){
+  $('#btn2').hide();
+  $('#btn3').hide();
+  $('#btn1').show();
+  $('#settings').hide();
+  $('#sound2').hide();
+  $('#back').hide();
 });
 
 $('#btn2').click(function(){
